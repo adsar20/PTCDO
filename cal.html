@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modern Calendar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/cal.css" />
+</head>
+<body>
+
+<div class="calendar-app">
+
+    <div class="calendar-card">
+
+        <div class="calendar-header">
+            <h2 id="monthYear"></h2>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn">&#10094;</button>
+                <button class="nav-btn" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <div class="days" id="calendarDays"></div>
+
+    </div>
+
+    <div class="calendar-sidebar">
+
+        <h3>Add Event</h3>
+
+        <div class="selected-date" id="selectedDateText">
+            No date selected
+        </div>
+
+        <div class="form-group">
+            <label>Event Title</label>
+            <input type="text" id="eventTitle" placeholder="Enter title">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea rows="4" id="eventDesc" placeholder="Event details"></textarea>
+        </div>
+
+        <button class="add-btn" id="addEventBtn">
+            Add Event
+        </button>
+
+        <div class="events-list">
+            <h3>Events</h3>
+
+            <div id="eventsContainer">
+                <div class="empty">
+                    No events yet
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+  <script type="module" src="js/Calendar.js"></script>
+
+</body>
+</html>

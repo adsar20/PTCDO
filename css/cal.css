@@ -1,0 +1,861 @@
+/* Variables */
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --text: #0f172a;
+  --sub: #64748b;
+  --border: #e2e8f0;
+  --danger: #ef4444;
+}
+
+/* Body styles for cal.html (standalone) */
+body:not(.dark) {
+  background: linear-gradient(135deg, #eef4ff, #f9fbff);
+  min-height: 100vh;
+  margin: 0;
+  padding: 30px;
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  scrollbar-width: none;
+}
+
+/* Common styles */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h1 {
+  flex: 1;
+  min-width: 200px;
+  margin-left: 16px;
+  color: var(--primary);
+}
+.calendar-header h1,
+.calendar-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendar-controls button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.calendar-controls button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Weekdays */
+.calendar-weekdays,
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.calendar-weekdays div,
+.weekdays div {
+  text-align: center;
+  font-weight: 600;
+  color: var(--sub);
+  padding: 12px 0;
+  font-size: 13px;
+}
+
+/* Days grid */
+.calendar-days,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+/* Day cells */
+.calendar-day,
+.day {
+  min-height: 80px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+}
+
+.calendar-day:hover,
+.day:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.calendar-day.today,
+.day.today {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.calendar-day.other-month,
+.day.other-month {
+  opacity: 0.35;
+}
+
+.calendar-day .day-number,
+.day .day-number {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.calendar-day.today .day-number,
+.day.today .day-number {
+  color: white;
+}
+
+.calendar-day .event,
+.day .event {
+  background: var(--primary-light);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 10px;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-day .event .event-text,
+.day .event .event-text {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.calendar-day.today .event .event-text,
+.day.today .event .event-text {
+  color: white;
+}
+
+.calendar-day.today .event,
+.day.today .event {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Selected date highlight */
+.calendar-day.selected,
+.day.selected {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+/* Selected today */
+.calendar-day.today.selected,
+.day.today.selected {
+  background: var(--primary);
+  color: white;
+}
+
+.calendar-day.today.selected .day-number,
+.day.today.selected .day-number {
+  color: white;
+}
+
+/* Event text color */
+.event-text {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Event dot indicator */
+.event-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+/* Event item title color in events panel */
+.event-item h4 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Events panel */
+.events-panel {
+  width: 340px;
+}
+
+.events-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.events-panel-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.events-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.event-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.event-item h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.event-item p {
+  font-size: 12px;
+  color: var(--sub);
+}
+
+.no-events,
+.empty {
+  text-align: center;
+  color: var(--sub);
+  padding: 20px 0;
+}
+
+.delete-btn {
+  margin-top: 8px;
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  outline: none;
+  transition: 0.2s;
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+#modalEventDateTime {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.add-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+.selected-date {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--sub);
+}
+
+.modal-body {
+  padding: 20px 24px;
+}
+
+/* Add event button in header */
+.add-event-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.add-event-btn:hover {
+  background: var(--primary);
+  transform: scale(1.05);
+}
+
+/* Calendar app layout (cal.html) */
+.calendar-app {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 25px;
+  padding: 30px;
+}
+
+.calendar-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+}
+
+.calendar-sidebar {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+  height: fit-content;
+}
+
+.calendar-sidebar h3 {
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+/* Main content layout (Calendar.html) */
+.main-content {
+  display: flex;
+  min-height: calc(100vh - 64px);
+  padding: 24px 24px 24px calc(240px + 24px);
+  gap: 24px;
+}
+
+.calendar-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.calendar-header.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* ===============================
+   DELETE BUTTON DESIGN
+================================= */
+
+.delete-event-btn {
+  background: linear-gradient(135deg, #ff4d4d, #d60000);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(214, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.delete-event-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ff1f1f, #b00000);
+  box-shadow: 0 6px 14px rgba(214, 0, 0, 0.35);
+}
+.delete-event-btn:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+    EDIT BUTTON DESIGN
+=============================== */
+.edit-event-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.edit-event-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+}
+.edit-event-btn:active {
+  transform: scale(0.96);
+}
+
+.delete-event-btn:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(135deg, #ff1f1f, #b00000);
+
+  box-shadow: 0 6px 14px rgba(214, 0, 0, 0.35);
+}
+
+.delete-event-btn:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+   DELETE MODAL BACKDROP
+================================= */
+
+#deleteConfirmModal {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  backdrop-filter: blur(5px);
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+
+  animation: fadeIn 0.25s ease;
+}
+
+#deleteConfirmModal.active {
+  display: flex;
+}
+
+/* ===============================
+   MODAL CONTENT
+================================= */
+
+#deleteConfirmModal .modal-content {
+  width: 360px;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 28px;
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+
+  animation: modalPop 0.25s ease;
+}
+
+/* TOP RED BAR */
+
+#deleteConfirmModal .modal-content::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 6px;
+
+  background: linear-gradient(90deg, #ff4d4d, #d60000);
+}
+
+/* ===============================
+   MODAL TITLE
+================================= */
+
+#deleteConfirmModal h3 {
+  margin-top: 10px;
+
+  margin-bottom: 12px;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: #222;
+}
+
+/* ===============================
+   MODAL TEXT
+================================= */
+
+#deleteConfirmModal p {
+  color: #666;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+  margin-bottom: 24px;
+}
+
+/* ===============================
+   MODAL ACTIONS
+================================= */
+
+#deleteConfirmModal .modal-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 14px;
+}
+
+/* ===============================
+   CANCEL BUTTON
+================================= */
+
+#cancelDeleteBtn {
+  padding: 11px 22px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #ececec;
+
+  color: #333;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+#cancelDeleteBtn:hover {
+  background: #dcdcdc;
+
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   CONFIRM DELETE BUTTON
+================================= */
+
+#confirmDeleteBtn {
+  padding: 11px 22px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #ff4d4d, #d60000);
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 4px 12px rgba(214, 0, 0, 0.25);
+}
+
+#confirmDeleteBtn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 16px rgba(214, 0, 0, 0.35);
+}
+
+#confirmDeleteBtn:active {
+  transform: scale(0.97);
+}
+/* ===============================
+   TIME PICKER WRAPPER
+================================= */
+
+.time-picker-wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+/* ===============================
+   LABEL
+================================= */
+
+.time-picker-wrapper label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #333;
+
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   CUSTOM TIME PICKER
+================================= */
+
+.custom-time-picker {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  border: 2px solid #e5e5e5;
+
+  background: #ffffff;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: #222;
+
+  outline: none;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* FOCUS EFFECT */
+
+.custom-time-picker:focus {
+  border-color: #d60000;
+
+  box-shadow: 0 0 0 4px rgba(214, 0, 0, 0.12);
+}
+
+/* HOVER */
+
+.custom-time-picker:hover {
+  border-color: #c9c9c9;
+}
+
+/* ===============================
+   TIME ICON DESIGN
+================================= */
+
+.custom-time-picker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+
+  opacity: 0.7;
+
+  transition: 0.2s ease;
+
+  transform: scale(1.1);
+}
+
+.custom-time-picker::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+
+  transform: scale(1.2);
+}
+
+/* ===============================
+   DARK BACKGROUND SUPPORT
+================================= */
+
+.custom-time-picker::selection {
+  background: #d60000;
+
+  color: white;
+}
+/* ===============================
+   ANIMATIONS
+================================= */
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+
+    transform: scale(0.8) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 950px) {
+  .calendar-app {
+    grid-template-columns: 1fr;
+  }
+  .main-content {
+    flex-direction: column;
+    padding-left: 24px;
+  }
+  .events-panel {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 650px) {
+  .calendar-day,
+  .day {
+    min-height: 60px;
+  }
+
+  .calendar-header h1,
+  .calendar-header h2 {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard - Trainees Analytics</title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="/icon/logo1.png" class="logo-icon" />
+          <span class="logo-text">PTCDO EMS</span>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <!-- <i class="bi bi-list"></i> -->
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.htm" class="nav-item">
+          <i class="nav-icon bi bi-upload"></i>
+          <span class="nav-label">Import</span>
+        </a>
+        <a href="#" class="nav-item active">
+          <i class="nav-icon bi bi-bar-chart-line-fill"></i>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="Calendar.html" class="nav-item">
+          <i class="nav-icon bi bi-calendar4-week"></i>
+          <span class="nav-label">Calendar</span>
+        </a>
+        <a href="trainers.html" class="nav-item">
+          <i class="nav-icon bi bi-person-badge"></i>
+          <span class="nav-label">Trainers</span>
+        </a>
+      </nav>
+
+      <!-- Dark Mode Toggle at Bottom -->
+      <div class="sidebar-theme-toggle">
+        <div class="theme-toggle">
+          <label class="theme-switch">
+            <input type="checkbox" id="sidebarThemeToggle" />
+            <span class="slider"></span>
+          </label>
+          <span class="theme-label">Dark Mode</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="container">
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+          <button
+            class="sidebar-toggle-topbar"
+            id="sidebarToggleTopbar"
+            title="Toggle sidebar"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+
+          <div class="title">
+            <h1>Dashboard</h1>
+            <p>Enrolled Trainees Analytics & Filter</p>
+          </div>
+          <div class="connection-status" id="connectionStatus">
+            <span class="status-dot"></span>
+            <span class="status-text">Connecting...</span>
+          </div>
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="card filter-card">
+          <div class="card-header">
+            <h3>📌 Filter Trainees</h3>
+
+            <span class="badge" id="filterCount">0 applied</span>
+          </div>
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label class="filter-label" for="filterRegion">Region</label>
+              <select id="filterRegion" class="filter-select">
+                <option value="">All Regions</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterProvince">Province</label>
+              <select id="filterProvince" class="filter-select">
+                <option value="">All Provinces</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterMunicipality"
+                >Municipality</label
+              >
+              <select id="filterMunicipality" class="filter-select">
+                <option value="">All Municipalities</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterBarangay">Barangay</label>
+              <select id="filterBarangay" class="filter-select">
+                <option value="">All Barangays</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterClassification"
+                >Classification Of Clients</label
+              >
+              <select id="filterClassification" class="filter-select">
+                <option value="">All Classifications</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterQualification"
+                >Qualification</label
+              >
+              <select id="filterQualification" class="filter-select">
+                <option value="">All Qualifications</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterNameSearch"
+                >Search by name</label
+              >
+              <input
+                type="text"
+                id="filterNameSearch"
+                class="filter-select"
+                style="padding: 10px 12px"
+                placeholder="Enter trainee name..."
+              />
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterGender">Gender</label>
+              <select id="filterGender" class="filter-select">
+                <option value="">All Genders</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterDateStarted"
+                >Date Started</label
+              >
+              <input
+                type="date"
+                id="filterDateStarted"
+                class="filter-select"
+                style="padding: 10px 12px"
+              />
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterDateFinished"
+                >Date Finished</label
+              >
+              <input
+                type="date"
+                id="filterDateFinished"
+                class="filter-select"
+                style="padding: 10px 12px"
+              />
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterDateAssessed"
+                >Date Assessed</label
+              >
+              <input
+                type="date"
+                id="filterDateAssessed"
+                class="filter-select"
+                style="padding: 10px 12px"
+              />
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="filterYear">Year</label>
+              <select id="filterYear" class="filter-select">
+                <option value="">All Years</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="resetFilters">&nbsp;</label>
+              <button class="btn btn-secondary" id="resetFilters">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOADING SPINNER -->
+
+        <div class="loading-overlay" id="loadingOverlay">
+          <div class="loader-card">
+            <div class="spinner"></div>
+            <p class="loader-text">Loading trainees data</p>
+            <div class="loader-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI STATS -->
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="card-header">
+              <h3>👥 Total Enrolled</h3>
+            </div>
+            <h1 id="totalEnrolled">0</h1>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <h3>⚧ Gender Distribution</h3>
+            </div>
+            <div class="stat-detail" id="genderStats">-</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <h3>🎓 Top Qualification</h3>
+            </div>
+            <div class="stat-detail" id="topQualification">-</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="card-header">
+              <h3>🗺️ Regions Covered</h3>
+            </div>
+            <h1 id="regionCount">0</h1>
+          </div>
+        </div>
+
+        <!-- DATA TABLE -->
+
+        <div class="card table-container">
+          <table id="traineesTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" style="display: none">
+            <h3>No Enrolled Trainees Found</h3>
+            <p>
+              There are no records matching the selected filters. Please adjust
+              your filters or import data first.
+            </p>
+          </div>
+        </div>
+
+        <!-- Trainee Detail Modal -->
+        <div class="modal-overlay" id="traineeModal" style="display: none">
+          <div class="modal-card">
+            <div class="modal-header">
+              <h3>Trainee Details</h3>
+              <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+              <!-- Content injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FIREBASE & DASHBOARD SCRIPT -->
+    <script type="module" src="js/dashboard.js"></script>
+    <script type="module" src="js/sidebar.js"></script>
+  </body>
+</html>

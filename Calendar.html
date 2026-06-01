@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Event Calendar - PTCDO EMS</title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cal.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="/icon/logo1.png" class="logo-icon" />
+          <span class="logo-text">PTCDO EMS</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.htm" class="nav-item">
+          <i class="nav-icon bi bi-upload"></i>
+          <span class="nav-label">Import</span>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+          <i class="nav-icon bi bi-bar-chart-line-fill"></i>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="Calendar.html" class="nav-item active">
+          <i class="nav-icon bi bi-calendar4-week"></i>
+          <span class="nav-label">Calendar</span>
+        </a>
+        <a href="trainers.html" class="nav-item">
+          <i class="nav-icon bi bi-person-badge"></i>
+          <span class="nav-label">Trainers</span>
+        </a>
+      </nav>
+
+      <!-- Dark Mode Toggle at Bottom -->
+      <div class="sidebar-theme-toggle">
+        <div class="theme-toggle">
+          <label class="theme-switch">
+            <input type="checkbox" id="sidebarThemeToggle" />
+            <span class="slider"></span>
+          </label>
+          <span class="theme-label">Dark Mode</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="calendar-main">
+        <!-- Calendar Header -->
+        <header class="calendar-header card">
+           <button
+            class="sidebar-toggle-topbar"
+            id="sidebarToggleTopbar"
+            title="Toggle sidebar"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+
+          <h1>Event Calendar</h1>
+          <div class="calendar-controls">
+            <button id="prevMonth">&#9664;</button>
+            <div id="monthYear"></div>
+            <button id="nextMonth">&#9654;</button>
+          </div>
+        </header>
+
+        <!-- Weekdays -->
+        <div class="calendar-weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+
+        <!-- Calendar Days -->
+        <div id="calendarDays" class="calendar-days"></div>
+      </div>
+
+      <!-- Events Panel -->
+      <div class="events-panel card">
+        <div class="events-panel-header">
+          <h2>Events</h2>
+          <button
+            id="openAddEventModal"
+            class="add-event-btn"
+            title="Add Event"
+          >
+            <i class="bi bi-plus"></i>
+          </button>
+        </div>
+        <div id="eventsList" class="events-list">
+          <p class="no-events">Select a date to view events</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add Event</h3>
+          <button id="closeAddEventModal" class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modalEventTitle">Title</label>
+            <input type="text" id="modalEventTitle" placeholder="Event title" />
+          </div>
+          <div class="form-group">
+            <label for="modalEventDesc">Description</label>
+            <textarea
+              id="modalEventDesc"
+              placeholder="Event description"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="time-picker-wrapper">
+            <label for="modalEventDateTime"> Reminder Time </label>
+
+            <input
+              type="time"
+              id="modalEventDateTime"
+              class="custom-time-picker"
+            />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+
+            <input
+              type="email"
+              id="modalEventEmail"
+              placeholder="Enter email"
+            />
+          </div>
+          <button id="saveEventBtn" class="add-btn">Save Event</button>
+        </div>
+      </div>
+    </div>
+    <div id="deleteConfirmModal" class="modal">
+      <div class="modal-content">
+        <h3>Delete Event?</h3>
+        <p>This action cannot be undone.</p>
+
+        <button id="confirmDeleteBtn" class="btn-danger">Yes, Delete</button>
+
+        <button id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Firebase connection is handled through server.js module -->
+    <script type="module" src="js/sidebar.js"></script>
+    <script type="module" src="js/Calendar.js"></script>
+  </body>
+</html>
